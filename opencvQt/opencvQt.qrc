@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/opencvQt">
+        <file>open.jpg</file>
+        <file>save.jpg</file>
+        <file>setting.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>opencvQtClass</class>
+ <widget class="QMainWindow" name="opencvQtClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>886</width>
+    <height>724</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>opencvQt</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>300</width>
+      <height>300</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>处理前的图像</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>180</y>
+      <width>300</width>
+      <height>300</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>处理后的图像</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>图像路径</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>30</y>
+      <width>551</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>30</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>恢复</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>80</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存的位置</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>70</y>
+      <width>551</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>70</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>120</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>完全显示</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>120</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>完全显示</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>540</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>视频位置</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>540</y>
+      <width>571</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>540</y>
+      <width>91</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>视频</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>320</y>
+      <width>131</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>清空图片保存位置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>250</y>
+      <width>101</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>清空图像路径</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>380</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>清空视频位置</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>886</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="actionopen"/>
+    <addaction name="actionsave"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>图像处理</string>
+    </property>
+    <addaction name="actiongray_2"/>
+    <addaction name="actionthros"/>
+    <addaction name="actionblur"/>
+    <addaction name="actionmidblur"/>
+    <addaction name="actionedge_2"/>
+    <addaction name="actionHisto"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>视频处理</string>
+    </property>
+    <addaction name="actiongray"/>
+    <addaction name="actionbin"/>
+    <addaction name="actionedge"/>
+    <addaction name="actionvideoblur"/>
+    <addaction name="actionvideomidblur"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>附加功能</string>
+    </property>
+    <addaction name="actionyolo"/>
+    <addaction name="actionequalize"/>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="actionabout"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_5"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionopen"/>
+   <addaction name="actionsave"/>
+   <addaction name="actionabout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionopen">
+   <property name="icon">
+    <iconset resource="opencvQt.qrc">
+     <normaloff>:/opencvQt/open.jpg</normaloff>:/opencvQt/open.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>打开</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionsave">
+   <property name="icon">
+    <iconset resource="opencvQt.qrc">
+     <normaloff>:/opencvQt/save.jpg</normaloff>:/opencvQt/save.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>保存</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionyolo">
+   <property name="text">
+    <string>yolo</string>
+   </property>
+  </action>
+  <action name="actiongray">
+   <property name="text">
+    <string>gray</string>
+   </property>
+  </action>
+  <action name="actionbin">
+   <property name="text">
+    <string>bin</string>
+   </property>
+  </action>
+  <action name="actionedge">
+   <property name="text">
+    <string>edge</string>
+   </property>
+  </action>
+  <action name="actiongray_2">
+   <property name="text">
+    <string>gray</string>
+   </property>
+  </action>
+  <action name="actionthros">
+   <property name="text">
+    <string>thros</string>
+   </property>
+  </action>
+  <action name="actionblur">
+   <property name="text">
+    <string>blur</string>
+   </property>
+  </action>
+  <action name="actionmidblur">
+   <property name="text">
+    <string>midblur</string>
+   </property>
+  </action>
+  <action name="actionedge_2">
+   <property name="text">
+    <string>edge</string>
+   </property>
+  </action>
+  <action name="actionabout">
+   <property name="icon">
+    <iconset resource="opencvQt.qrc">
+     <normaloff>:/opencvQt/setting.png</normaloff>:/opencvQt/setting.png</iconset>
+   </property>
+   <property name="text">
+    <string>about</string>
+   </property>
+  </action>
+  <action name="actionvideoblur">
+   <property name="text">
+    <string>videoblur</string>
+   </property>
+  </action>
+  <action name="actionvideomidblur">
+   <property name="text">
+    <string>videomidblur</string>
+   </property>
+  </action>
+  <action name="actionHisto">
+   <property name="text">
+    <string>Histo</string>
+   </property>
+  </action>
+  <action name="actionequalize">
+   <property name="text">
+    <string>equalize</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="opencvQt.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>openimg()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>795</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>791</x>
+     <y>151</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionopen</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>openimg()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionsave</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>saveimg()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionblur</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>blur()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionbin</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>video_bin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actiongray</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>video_gray()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actiongray_2</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>gray()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionabout</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>about()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionedge_2</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>edgedetec()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionedge</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>video_detect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionvideomidblur</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>video_gray()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionyolo</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>about()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionvideoblur</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>video_blur()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionthros</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>bin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>saveimg()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>802</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>804</x>
+     <y>192</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>showsource()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>186</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>207</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>showdst()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>683</x>
+     <y>191</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionmidblur</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>midblur()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEdit_2</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>426</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>307</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEdit_3</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>431</x>
+     <y>466</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>415</x>
+     <y>613</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>436</x>
+     <y>327</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>107</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionHisto</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>caclHist()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionequalize</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>equlized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>openimg()</slot>
+  <slot>saveimg()</slot>
+  <slot>showpicture()</slot>
+  <slot>gray()</slot>
+  <slot>video_gray()</slot>
+  <slot>blur()</slot>
+  <slot>video_blur()</slot>
+  <slot>video_bin()</slot>
+  <slot>bin()</slot>
+  <slot>edgedetec()</slot>
+  <slot>video_detect()</slot>
+  <slot>yolov5()</slot>
+  <slot>about()</slot>
+  <slot>recovery()</slot>
+  <slot>showsource()</slot>
+  <slot>showdst()</slot>
+  <slot>midblur()</slot>
+  <slot>caclHist()</slot>
+  <slot>equlized()</slot>
+ </slots>
+</ui>
