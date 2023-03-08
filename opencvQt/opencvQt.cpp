@@ -74,7 +74,15 @@ void opencvQt::video_blur() {
     VideoWriter out;
     bool check_write = ui.checkBox_2->isChecked();
     if (check_write) {
-
+        QString save_path = ui.lineEdit_4->text();
+        if (save_path.isEmpty()) {
+            QMessageBox().warning(this, "警告", "无法读取图片");
+            return;
+        }
+        int width = capture.get(CAP_PROP_FRAME_WIDTH);
+        int height = capture.get(CAP_PROP_FRAME_HEIGHT);
+        int fps = capture.get(CAP_PROP_FRAME_COUNT);
+        out.open(save_path.toStdString(), VideoWriter::fourcc('M', 'J', 'P', 'G'), fps, cv::Size(width, height), false);
     }
     if (ui.checkBox->isChecked()) {
         QString filename = ui.lineEdit_3->text();
@@ -92,6 +100,9 @@ void opencvQt::video_blur() {
         if (flag) {
             cv::cvtColor(frame, frame, cv::ColorConversionCodes::COLOR_BGR2RGB);
             cv::blur(frame, frame, cv::Size(3, 3));
+        }
+        if (check_write) {
+            out.write(frame);
         }
         imshow("camerablur", frame);
 
@@ -111,7 +122,15 @@ void opencvQt::video_detect() {
     VideoWriter out;
     bool check_write = ui.checkBox_2->isChecked();
     if (check_write) {
-
+        QString save_path = ui.lineEdit_4->text();
+        if (save_path.isEmpty()) {
+            QMessageBox().warning(this, "警告", "无法读取图片");
+            return;
+        }
+        int width = capture.get(CAP_PROP_FRAME_WIDTH);
+        int height = capture.get(CAP_PROP_FRAME_HEIGHT);
+        int fps = capture.get(CAP_PROP_FRAME_COUNT);
+        out.open(save_path.toStdString(), VideoWriter::fourcc('M', 'J', 'P', 'G'), fps, cv::Size(width, height), false);
     }
     if (ui.checkBox->isChecked()) {
         QString filename = ui.lineEdit_3->text();
@@ -129,6 +148,9 @@ void opencvQt::video_detect() {
         if (flag) {
             cv::cvtColor(frame, frame, cv::ColorConversionCodes::COLOR_BGR2RGB);
             cv::Canny(frame, frame, 100, 300);
+        }
+        if (check_write) {
+            out.write(frame);
         }
         imshow("cameraedgetect", frame);
 
@@ -148,7 +170,15 @@ void opencvQt::video_gray() {
     VideoWriter out;
     bool check_write = ui.checkBox_2->isChecked();
     if (check_write) {
-
+        QString save_path = ui.lineEdit_4->text();
+        if (save_path.isEmpty()) {
+            QMessageBox().warning(this, "警告", "无法读取图片");
+            return;
+        }
+        int width = capture.get(CAP_PROP_FRAME_WIDTH);
+        int height = capture.get(CAP_PROP_FRAME_HEIGHT);
+        int fps = capture.get(CAP_PROP_FRAME_COUNT);
+        out.open(save_path.toStdString(), VideoWriter::fourcc('M', 'J', 'P', 'G'), fps, cv::Size(width, height), false);
     }
     if (ui.checkBox->isChecked()) {
         QString filename = ui.lineEdit_3->text();
@@ -165,6 +195,9 @@ void opencvQt::video_gray() {
     while (capture.read(frame)) {
         if (flag) {
             cv::cvtColor(frame, frame, cv::ColorConversionCodes::COLOR_BGR2GRAY);
+        }
+        if (check_write) {
+            out.write(frame);
         }
         imshow("cameragray", frame);
         char c = waitKey(50);
@@ -270,9 +303,7 @@ void opencvQt::video_bin() {
     VideoCapture capture(0);
     VideoWriter out;
     bool check_write = ui.checkBox_2->isChecked();
-    if (check_write) {
-        
-    }
+    
     if (ui.checkBox->isChecked()) {
         QString filename = ui.lineEdit_3->text();
         if (filename.isEmpty()) {
@@ -282,6 +313,17 @@ void opencvQt::video_bin() {
         ui.lineEdit_3->setText(filename);
         capture.open(filename.toStdString());
     }
+    if (check_write) {
+        QString save_path = ui.lineEdit_4->text();
+        if (save_path.isEmpty()) {
+            QMessageBox().warning(this, "警告", "无法读取图片");
+            return;
+        }
+        int width = capture.get(CAP_PROP_FRAME_WIDTH);
+        int height = capture.get(CAP_PROP_FRAME_HEIGHT);
+        int fps = capture.get(CAP_PROP_FRAME_COUNT);
+        out.open(save_path.toStdString(), VideoWriter::fourcc('M', 'J', 'P', 'G'), fps, cv::Size(width, height), false);
+    }
     Mat frame;
     namedWindow("camerabin", WINDOW_AUTOSIZE);
     createTrackbar("bintracker", "camerabin", &num, 255, onChange, &num);
@@ -290,6 +332,9 @@ void opencvQt::video_bin() {
         if (flag) {
             cv::cvtColor(frame, frame, cv::ColorConversionCodes::COLOR_BGR2RGB);
             cv::threshold(frame, frame, num, 255, cv::THRESH_BINARY_INV);
+        }
+        if (check_write) {
+            out.write(frame);
         }
         imshow("camerabin", frame);
         char c = waitKey(50);
@@ -308,7 +353,15 @@ void opencvQt::video_midblur() {
     VideoWriter out;
     bool check_write = ui.checkBox_2->isChecked();
     if (check_write) {
-
+        QString save_path = ui.lineEdit_4->text();
+        if (save_path.isEmpty()) {
+            QMessageBox().warning(this, "警告", "无法读取图片");
+            return;
+        }
+        int width = capture.get(CAP_PROP_FRAME_WIDTH);
+        int height = capture.get(CAP_PROP_FRAME_HEIGHT);
+        int fps = capture.get(CAP_PROP_FRAME_COUNT);
+        out.open(save_path.toStdString(), VideoWriter::fourcc('M', 'J', 'P', 'G'), fps, cv::Size(width, height), false);
     }
     if (ui.checkBox->isChecked()) {
         QString filename = ui.lineEdit_3->text();
@@ -327,6 +380,9 @@ void opencvQt::video_midblur() {
         if (flag) {
             cv::cvtColor(frame, frame, cv::ColorConversionCodes::COLOR_BGR2RGB);
             cv::medianBlur(frame, frame, 3);
+        }
+        if (check_write) {
+            out.write(frame);
         }
         imshow("cameramidblur", frame);
 
