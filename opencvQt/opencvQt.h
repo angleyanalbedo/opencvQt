@@ -15,6 +15,64 @@ class opencvQt : public QMainWindow
 public:
     opencvQt(QWidget *parent = nullptr);
     ~opencvQt();
+    static void showHist(cv::Mat& img, cv::Mat& dst)
+    {
+        using namespace cv;
+        using namespace std;
+        //1、创建3个矩阵来处理每个通道输入图像通道。
+        //我们用向量类型变量来存储每个通道，并用split函数将输入图像划分成3个通道。
+        vector<Mat>bgr;
+        split(img, bgr);
+
+        //2、定义直方图的区间数
+        int numbers = 256;
+
+        //3、定义变量范围并创建3个矩阵来存储每个直方图
+        float range[] = { 0,256 };
+        const float* histRange = { range };
+        Mat b_hist, g_hist, r_hist;
+
+        //4、使用calcHist函数计算直方图
+        int numbins = 256;
+        calcHist(&bgr[0], 1, 0, Mat(), b_hist, 1, &numbins, &histRange);
+        calcHist(&bgr[1], 1, 0, Mat(), g_hist, 1, &numbins, &histRange);
+        calcHist(&bgr[2], 1, 0, Mat(), r_hist, 1, &numbins, &histRange);
+
+        //5、创建一个512*300像素大小的彩色图像，用于绘制显示
+        int width = 512;
+        int height = 300;
+        Mat histImage(height, width, CV_8UC3, Scalar(20, 20, 20));
+
+        //6、将最小值与最大值标准化直方图矩阵
+        normalize(b_hist, b_hist, 0, height, NORM_MINMAX);
+        normalize(g_hist, g_hist, 0, height, NORM_MINMAX);
+        normalize(r_hist, r_hist, 0, height, NORM_MINMAX);
+
+        //7、使用彩色通道绘制直方图
+        int binStep = cvRound((float)width / (float)numbins);  //通过将宽度除以区间数来计算binStep变量
+
+        for (int i = 1; i < numbins; i++)
+        {
+            line(histImage,
+                Point(binStep * (i - 1), height - cvRound(b_hist.at<float>(i - 1))),
+                Point(binStep * (i), height - cvRound(b_hist.at<float>(i))),
+                Scalar(255, 0, 0)
+            );
+            line(histImage,
+                Point(binStep * (i - 1), height - cvRound(g_hist.at<float>(i - 1))),
+                Point(binStep * (i), height - cvRound(g_hist.at<float>(i))),
+                Scalar(0, 255, 0)
+            );
+            line(histImage,
+                Point(binStep * (i - 1), height - cvRound(r_hist.at<float>(i - 1))),
+                Point(binStep * (i), height - cvRound(r_hist.at<float>(i))),
+                Scalar(0, 0, 255)
+            );
+        }
+        dst = histImage;
+        return;
+    }
+
 private slots:
     void openimg();
     void saveimg();

@@ -363,9 +363,24 @@ void opencvQt::equlized() {
 
     // Convert color ycrcb to BGR
     cvtColor(ycrcb, result, COLOR_YCrCb2BGR);
+    cv::imwrite(tmppath, result);
+    tmpimg.load(tmppath);
+    //tmpimg = mat2img(img);
+    ui.label_2->setPixmap(QPixmap().fromImage(tmpimg));
 
 }
 void opencvQt::caclHist() {
+    cv::Mat img = cv::imread(tmppath);
+    if (img.data == nullptr) {
+        QMessageBox().warning(this, "警告", "无法读取图片");
+        return;
+    }
+    cv::Mat res;
+    showHist(img, res);
+    cv::imwrite(tmppath, res);
+    tmpimg.load(tmppath);
+    //tmpimg = mat2img(img);
+    ui.label_2->setPixmap(QPixmap().fromImage(tmpimg));
 
 }
 void opencvQt::lapulasi() {
