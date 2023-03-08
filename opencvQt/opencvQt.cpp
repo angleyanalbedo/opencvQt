@@ -15,7 +15,7 @@ void opencvQt::openimg() {
     
     if (filename.isEmpty()) {
         filename = QFileDialog().getOpenFileName(this, QString().fromStdWString(L"打开文件的"), 
-            "C:\\Users\\33298\\OneDrive\\Pictures");
+            "C:\\Users");
         
         if (filename.isEmpty()) {
             QMessageBox().warning(this, QString().fromStdWString(L"错误"), 
@@ -40,7 +40,7 @@ void opencvQt::saveimg() {
 
     if (filename.isEmpty()) {
         filename = QFileDialog().getSaveFileName(this, QString().fromStdWString(L"保存文件的"),
-            "C:\\Users\\33298\\OneDrive\\Pictures");
+            "C:\\Users");
         
         if (filename.isEmpty()) {
             QMessageBox().warning(this, QString().fromStdWString(L"错误"),
@@ -54,18 +54,37 @@ void opencvQt::saveimg() {
 void opencvQt::blur() {
     //cv::Mat img = img2mat(tmpimg);
     cv::Mat img = cv::imread(tmppath);
+    if (img.empty()) {
+        QMessageBox().warning(this, "警告", "无法读取图片");
+        return;
+    }
+    
     cv::Mat tmp = img;
-    cv::cvtColor(img,tmp, cv::ColorConversionCodes::COLOR_BGR2RGB);
     cv::blur(tmp, img, cv::Size(3, 3));
-    cv::imwrite(tmppath,tmp);
+    cv::imwrite(tmppath, tmp);
     tmpimg.load(tmppath);
     //tmpimg = mat2img(img);
     ui.label_2->setPixmap(QPixmap().fromImage(tmpimg));
+    
 }
 void opencvQt::video_blur() {
     using namespace cv;
     bool flag = true;
     VideoCapture capture(0);
+    VideoWriter out;
+    bool check_write = ui.checkBox_2->isChecked();
+    if (check_write) {
+
+    }
+    if (ui.checkBox->isChecked()) {
+        QString filename = ui.lineEdit_3->text();
+        if (filename.isEmpty()) {
+            filename = QFileDialog().getOpenFileName(this, QString().fromStdWString(L"打开文件的"),
+                "C:\\Users");
+        }
+        ui.lineEdit_3->setText(filename);
+        capture.open(filename.toStdString());
+    }
     Mat frame;
     namedWindow("camerablur", WINDOW_AUTOSIZE);
     setMouseCallback("camerablur", onMouse, &flag);
@@ -89,6 +108,20 @@ void opencvQt::video_detect() {
     using namespace cv;
     bool flag = true;
     VideoCapture capture(0);
+    VideoWriter out;
+    bool check_write = ui.checkBox_2->isChecked();
+    if (check_write) {
+
+    }
+    if (ui.checkBox->isChecked()) {
+        QString filename = ui.lineEdit_3->text();
+        if (filename.isEmpty()) {
+            filename = QFileDialog().getOpenFileName(this, QString().fromStdWString(L"打开文件的"),
+                "C:\\Users");
+        }
+        ui.lineEdit_3->setText(filename);
+        capture.open(filename.toStdString());
+    }
     Mat frame;
     namedWindow("cameraedgetect", WINDOW_AUTOSIZE);
     imshow("cameraedgetect", frame);
@@ -112,6 +145,20 @@ void opencvQt::video_gray() {
     using namespace cv;
     bool flag = true;
     VideoCapture capture(0);
+    VideoWriter out;
+    bool check_write = ui.checkBox_2->isChecked();
+    if (check_write) {
+
+    }
+    if (ui.checkBox->isChecked()) {
+        QString filename = ui.lineEdit_3->text();
+        if (filename.isEmpty()) {
+            filename = QFileDialog().getOpenFileName(this, QString().fromStdWString(L"打开文件的"),
+                "C:\\Users");
+        }
+        ui.lineEdit_3->setText(filename);
+        capture.open(filename.toStdString());
+    }
     Mat frame;
     namedWindow("cameragray", WINDOW_AUTOSIZE);
     setMouseCallback("cameragray", onMouse, &flag);
@@ -133,7 +180,11 @@ void opencvQt::gray() {
     
     //cv::Mat img = img2mat(tmpimg);
     cv::Mat img = cv::imread(tmppath);
-    cv::cvtColor(img, img, cv::ColorConversionCodes::COLOR_BGR2GRAY);
+    if (img.data == nullptr) {
+        QMessageBox().warning(this, "警告", "无法读取图片");
+        return;
+    }
+    
     //tmpimg = mat2img(img);
     cv::imwrite(tmppath, img);
     tmpimg.load(tmppath);
@@ -146,7 +197,11 @@ void opencvQt::about(){
 void opencvQt::edgedetect(){
     //cv::Mat img = img2mat(tmpimg);
     cv::Mat img = cv::imread(tmppath);
-    cv::cvtColor(img, img, cv::ColorConversionCodes::COLOR_BGR2GRAY);
+    if (img.data == nullptr) {
+        QMessageBox().warning(this, "警告", "无法读取图片");
+        return;
+    }
+   
     cv::Canny(img, img, 100, 300);
     //tmpimg = mat2img(img);
     cv::imwrite(tmppath, img);
@@ -155,8 +210,12 @@ void opencvQt::edgedetect(){
 }
 void opencvQt::midblur(){
     cv::Mat img = cv::imread(tmppath);
+    if (img.data == nullptr) {
+        QMessageBox().warning(this, "警告", "无法读取图片");
+        return;
+    }
     //cv::Mat img = img2mat(tmpimg);
-    cv::cvtColor(img, img, cv::ColorConversionCodes::COLOR_BGR2GRAY);
+    
     cv::medianBlur(img, img,3);
     cv::imwrite(tmppath, img);
     tmpimg.load(tmppath);
@@ -180,14 +239,18 @@ void opencvQt::bin() {
     num = QInputDialog().getInt(this, QString().fromStdWString(L"阈值的输入"),
         QString().fromStdWString(L"输入数字"));
     if (num != 0) {
-        cv::Mat img = img2mat(tmpimg);
-        cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
+        //cv::Mat img = img2mat(tmpimg);
+        cv::Mat img = cv::imread(tmppath);
+        if (img.data == nullptr) {
+            QMessageBox().warning(this, "警告", "无法读取图片");
+            return;
+        }
+       
         cv::Mat  gray_binary;
-
-        //灰度图像二值化
-        //THRESH_BINARY_INV--灰度大于阈值125则设为0, 其他值为最大
         cv::threshold(img, gray_binary, num, 255, cv::THRESH_BINARY_INV);
-        tmpimg = mat2img(gray_binary);
+        cv::imwrite(tmppath, gray_binary);
+        tmpimg.load(tmppath);
+        // tmpimg = mat2img(gray_binary);
         ui.label_2->setPixmap(QPixmap().fromImage(tmpimg));
     }
     else
@@ -205,6 +268,20 @@ void opencvQt::video_bin() {
     if (num == 0)
         return;
     VideoCapture capture(0);
+    VideoWriter out;
+    bool check_write = ui.checkBox_2->isChecked();
+    if (check_write) {
+        
+    }
+    if (ui.checkBox->isChecked()) {
+        QString filename = ui.lineEdit_3->text();
+        if (filename.isEmpty()) {
+           filename = QFileDialog().getOpenFileName(this, QString().fromStdWString(L"打开文件的"),
+                "C:\\Users");
+        }
+        ui.lineEdit_3->setText(filename);
+        capture.open(filename.toStdString());
+    }
     Mat frame;
     namedWindow("camerabin", WINDOW_AUTOSIZE);
     createTrackbar("bintracker", "camerabin", &num, 255, onChange, &num);
@@ -221,13 +298,28 @@ void opencvQt::video_bin() {
         }
     }
     capture.release();
-
+    out.release();
     waitKey(0);
 }
 void opencvQt::video_midblur() {
     using namespace cv;
     bool flag = true;
     VideoCapture capture(0);
+    VideoWriter out;
+    bool check_write = ui.checkBox_2->isChecked();
+    if (check_write) {
+
+    }
+    if (ui.checkBox->isChecked()) {
+        QString filename = ui.lineEdit_3->text();
+        if (filename.isEmpty()) {
+            filename = QFileDialog().getOpenFileName(this, QString().fromStdWString(L"打开文件的"),
+                "C:\\Users");
+        }
+        ui.lineEdit_3->setText(filename);
+        capture.open(filename.toStdString());
+    }
+    
     Mat frame;
     namedWindow("cameramidblur", WINDOW_AUTOSIZE);
     setMouseCallback("cameramidblur", onMouse, &flag);
@@ -248,8 +340,45 @@ void opencvQt::video_midblur() {
     waitKey(0);
 }
 void opencvQt::equlized() {
+    using namespace cv;
+    cv::Mat result = cv::imread(tmppath);
+    if (result.data == nullptr) {
+        QMessageBox().warning(this, "警告", "无法读取图片");
+        return;
+    }
+    
+    // Convert BGR image to YCbCr
+    Mat ycrcb;
+    cvtColor(result, ycrcb, COLOR_BGR2YCrCb);
+
+    // Split image into channels
+    std::vector<Mat> channels;
+    split(ycrcb, channels);
+
+    // Equalize the Y channel only
+    equalizeHist(channels[0], channels[0]);
+
+    // Merge the result channels
+    merge(channels, ycrcb);
+
+    // Convert color ycrcb to BGR
+    cvtColor(ycrcb, result, COLOR_YCrCb2BGR);
 
 }
 void opencvQt::caclHist() {
 
+}
+void opencvQt::lapulasi() {
+    cv::Mat img = cv::imread(tmppath);
+    if (img.data == nullptr) {
+        QMessageBox().warning(this, "警告", "无法读取图片");
+        return;
+    }
+    //cv::Mat img = img2mat(tmpimg);
+    cv::cvtColor(img, img, cv::ColorConversionCodes::COLOR_BGR2GRAY);
+    cv::Laplacian(img, img, 3);
+    cv::imwrite(tmppath, img);
+    tmpimg.load(tmppath);
+    //tmpimg = mat2img(img);
+    ui.label_2->setPixmap(QPixmap().fromImage(tmpimg));
 }

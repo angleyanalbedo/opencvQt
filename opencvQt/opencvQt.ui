@@ -225,6 +225,48 @@
      <string>清空视频位置</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>590</y>
+      <width>141</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存视频</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>590</y>
+      <width>72</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存视频的位置</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>590</y>
+      <width>561</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -252,6 +294,7 @@
     <addaction name="actionmidblur"/>
     <addaction name="actionedge_2"/>
     <addaction name="actionHisto"/>
+    <addaction name="actionlapulasi"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -390,6 +433,11 @@
   <action name="actionequalize">
    <property name="text">
     <string>equalize</string>
+   </property>
+  </action>
+  <action name="actionlapulasi">
+   <property name="text">
+    <string>lapulasi</string>
    </property>
   </action>
  </widget>
@@ -766,6 +814,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionlapulasi</sender>
+   <signal>triggered()</signal>
+   <receiver>opencvQtClass</receiver>
+   <slot>laplasi()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>openimg()</slot>
@@ -787,5 +851,6 @@
   <slot>midblur()</slot>
   <slot>caclHist()</slot>
   <slot>equlized()</slot>
+  <slot>laplasi()</slot>
  </slots>
 </ui>

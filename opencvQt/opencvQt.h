@@ -33,6 +33,7 @@ private slots:
     void video_midblur();
     void caclHist();
     void equlized();
+    void lapulasi();
     
 private:
     QImage tmpimg;
@@ -192,4 +193,5 @@ private:
         // Show image
         imshow("Equalized", result);
     }
+   
 };
