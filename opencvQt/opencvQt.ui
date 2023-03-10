@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>opencvQt</string>
+   <string>20101111张子霖</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLabel" name="label">
@@ -578,7 +578,7 @@
    <sender>actionedge_2</sender>
    <signal>triggered()</signal>
    <receiver>opencvQtClass</receiver>
-   <slot>edgedetec()</slot>
+   <slot>edgedetect()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -818,7 +818,7 @@
    <sender>actionlapulasi</sender>
    <signal>triggered()</signal>
    <receiver>opencvQtClass</receiver>
-   <slot>laplasi()</slot>
+   <slot>lapulasi()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -841,7 +841,7 @@
   <slot>video_blur()</slot>
   <slot>video_bin()</slot>
   <slot>bin()</slot>
-  <slot>edgedetec()</slot>
+  <slot>edgedetect()</slot>
   <slot>video_detect()</slot>
   <slot>yolov5()</slot>
   <slot>about()</slot>
@@ -851,6 +851,6 @@
   <slot>midblur()</slot>
   <slot>caclHist()</slot>
   <slot>equlized()</slot>
-  <slot>laplasi()</slot>
+  <slot>lapulasi()</slot>
  </slots>
 </ui>

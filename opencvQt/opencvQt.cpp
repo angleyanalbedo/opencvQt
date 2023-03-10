@@ -217,7 +217,7 @@ void opencvQt::gray() {
         QMessageBox().warning(this, "警告", "无法读取图片");
         return;
     }
-    
+    cv::cvtColor(img, img, cv::ColorConversionCodes::COLOR_BGR2GRAY);
     //tmpimg = mat2img(img);
     cv::imwrite(tmppath, img);
     tmpimg.load(tmppath);
@@ -225,7 +225,7 @@ void opencvQt::gray() {
 }
 void opencvQt::about(){
     QMessageBox().about(this, QString().fromStdWString(L"信息"), 
-        QString().fromStdWString(L"学好信息"));
+        QString().fromStdWString(L"20101111张子霖信息"));
 }
 void opencvQt::edgedetect(){
     //cv::Mat img = img2mat(tmpimg);
